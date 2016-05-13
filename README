@@ -1,0 +1,68 @@
+===============================================================================
+ An implementation of Convolutional Deep Belief Networks in Python
+-------------------------------------------------------------------------------
+Mojtaba Solgi (solgi@cse.msu.edu)
+-------------------------------------------------------------------------------
+The code has been developed based on the following articles:
+
+
+``Convolutional deep belief networks for scalable unsupervised learning of 
+hierarchical representations.''
+Honglak Lee, Roger Grosse, Rajesh Ranganath, and Andrew Y. Ng.
+In Proceedings of the Twenth-Sixth International Conference on Machine Learning
+(ICML), 2009. No. 8, p. 609--616
+
+``Sparse deep belief net model for visual area V2.''
+Honglak Lee, Chaitu Ekanadham, and Andrew Y. Ng.
+Advances in Neural Information Processing Systems (NIPS) 20, 2008. 
+
+And a simpler matlab implementation available from:
+http://ai.stanford.edu/~hllee/softwares/code_crbm.tgz
+===============================================================================
+
+
+The program has successfuly been tested under GNU/Linux and Mac OS X. 
+
+You will need the following open source Python libaries:
+- Cython: C-Extension for Python
+- PyCuda
+- PyGTK
+- numpy (tested with version 1.3.0) 
+- scipy (tested with version 0.7.0)
+- PIL: Python Imaging Library (tested with version 1.1.7)
+
+**IMPORTANT** The program has been built and tested with Python 2.7 and Gtk2.0.
+It is not compatile with newer versions of Python, e.g., python3.
+
+-------------------------------------------------------------------------------
+Example of use:
+
+0) Enter the code directory: cd code
+
+1) Place the dataset (only image is currently supported) to a directory 
+(the program was tested on natural images dataset available from 
+http://ai.stanford.edu/~hllee/softwares/code_crbm.tgz)
+
+2) Set the parameters of the model and data in parameter to your desired values.
+Two sample parameter files are provided for the natural image and face datasets
+(params_natural_imgs.pand params_face_imgs.py) respectively.
+
+3) Set the value of params filename in config.py to point to your paramters
+file
+
+4) Compile the Cython code by running:
+      a) chmod +x  make-cython.sh
+      b) ./make-cython.sh
+This will create base.c and then base.so which will be used by the python code.
+
+5) To run the program type either:
+      a) "python main.py" for the faster, terminal mode
+      b) "python GUI.py" for user interface mode
+
+-------------------------------------------------------------------------------
+Known Issue:
+
+# The refresh rate of the GUI (set via rum_params['GUI_refresh_timeout'] in 
+parameters module) is not synchronized with the actual simualtion steps. One 
+needs to adjust the timeout depending on the performace of their machine.
+
